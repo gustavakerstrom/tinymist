@@ -545,15 +545,15 @@ export class TypstDocumentContext<O = any> {
     this._scrollAdjustTimeout = setTimeout(() => {
       this._scrollAdjustTimeout = undefined;
       const domState = this.retrieveDOMState();
-      const newBBox = domState.scrollPosition;
-      if (!newBBox) {
+      const newPosition = domState.scrollPosition;
+      if (!newPosition) {
         return;
       }
-      const expectedLeft = newBBox.width * this._scrollAdjustLeftRatio;
-      const expectedTop = newBBox.height * this._scrollAdjustTopRatio;
+      const expectedLeft = newPosition.width * this._scrollAdjustLeftRatio;
+      const expectedTop = newPosition.height * this._scrollAdjustTopRatio;
 
-      const adjustedDiffLeft = newBBox.left - expectedLeft;
-      const adjustedDiffTop = newBBox.top - expectedTop;
+      const adjustedDiffLeft = newPosition.left - expectedLeft;
+      const adjustedDiffTop = newPosition.top - expectedTop;
       if (Math.abs(adjustedDiffLeft) < 1e-1 && Math.abs(adjustedDiffTop) < 1e-1) {
         return;
       }
